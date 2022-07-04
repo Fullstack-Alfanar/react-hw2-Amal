@@ -48,11 +48,11 @@ function Shoes() {
         <div>
           <label>Size</label>
           <select>
-            <option></option>
             <option value="37">37</option>
             <option value="38">38</option>
             <option value="39">39</option>
             <option value="40">40</option>
+            <option value="40">41</option>
           </select>
         </div>
         <div>
