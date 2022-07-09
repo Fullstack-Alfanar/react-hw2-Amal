@@ -10,7 +10,6 @@ body {
   position: relative;
 }
 .contact-container {
- 
   display: grid;
   color: rgb(255, 123, 0);
   background-color: white;
@@ -18,61 +17,75 @@ body {
   border-radius: 1em;
   position: absolute;
   top: 20px;
-  left: 450px;
+  left: 400px;
 
-  form{
-    width: 70%;
-      bottom:100px;
+  form {
+    text-align: center;
 
+    table {
+      margin: 0.5em;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
 
-     div{
-    margin: 0.5em;
-    text-align: left;
-    display: flex;
-    flex-direction: column;
+      input,
+      select {
+        margin-top: 0.2em;
+        padding: 0.6em;
+        width: 400px;
+        font-size: 0.9em;
+        background-color: rgb(252, 201, 135);
+        border: none;
+        border-radius: 0.7em;
+      }
+      input:focus {
+        background-color: darksalmon;
+      }
 
-  input, select {
-    margin-top: 0.2em;
-    padding: 0.6em;
-    width: 400px;
-    font-size: 0.9em;
-    background-color: rgb(252, 201, 135);
-    border: none;
-    border-radius: 0.7em;
-    color: darkred;
+      input:hover {
+        background-color: darksalmon;
+      }
+    }
+
+    button {
+      cursor: pointer;
+      padding: 0.8em 11.5em;
+      margin-top: 0.2em;
+      background-color: red;
+      color: white;
+      border-radius: 0.5em;
+      border: none;
+      font-size: 1em;
+    }
+
+    button:hover {
+      background-color: darkorange;
+      color: white;
+    }
+
+    p {
+      color: red;
+      font-size: 0.8em;
+      text-align: center;
+    }
+
+    tr {
+      display: flex;
+      justify-content: space-between;
+    }
   }
-  input:focus{
-    background-color: darksalmon;
-  }
-
-  input:hover{
-    background-color: darksalmon;
-  }
 
 
-  }
-
-  button {
-    cursor: pointer;
-    padding: 0.8em 11.5em;
-    margin-top: 0.2em;
-    background-color:red;
+  .home {
+    padding: 0.5em 0;
+    margin-top: 1em;
+    width: 14em;
+    background-color: rgb(29, 29, 141);
     color: white;
-    border-radius: 0.5em;
     border: none;
     font-size: 1em;
+    border-radius: 5px;
+    margin-left: 170px;
+    cursor: pointer;
   }
-
-  button:hover {
-    background-color: darkorange;
-    color: white;
-  }
-
-  p{
-    color: red;
-    font-size: 0.8em;
-  }
-  }
-
- 
 }
