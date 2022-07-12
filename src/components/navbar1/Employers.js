@@ -1,129 +1,231 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/Form.scss";
-import EmploymentTable from "./EmploymentTable";
 
 function Employers() {
   const navigate = useNavigate();
-  const initialValues = {
-    first: "",
-    last: "",
-    title: "",
-    country: "",
-    city: "",
-    birthDate: "",
-    Image: "",
-  };
-  const [formValues, setFormValues] = useState(initialValues);
-  const [firstErr, setFirstErr] = useState(false);
-  const [lastErr, setLastErr] = useState(false);
-  const [titleErr, setTitleErr] = useState(false);
-  const [countryErr, setCountryErr] = useState(false);
-  const [cityErr, setCityErr] = useState(false);
-  const [image, setImage] = useState("");
+  const [first, setFirst] = useState("");
+  const [last, setLast] = useState("");
+  const [title, setTitle] = useState("");
+  const [country, setCountry] = useState("");
+  const [city, setCity] = useState("");
   const [birthDate, setBirthDate] = useState("");
+  const [image1, setImage1] = useState("");
 
-  const useHandler = (e) => {
-    let item = e.target.value;
-    if (item.length < 2 || item.length > 30) {
-      setFirstErr(true);
-      setLastErr(true);
-      setCityErr(true);
-    } else {
-      setFirstErr(false);
-      setLastErr(false);
-      setCityErr(false);
-    }
-  };
+  const [firstMessage, setFirstMessage] = useState("");
+  const [lastMessage, setLastMessage] = useState("");
+  const [titleMessage, setTitleMessage] = useState("");
+  const [countryMessage, setCountryMessage] = useState("");
+  const [cityMessage, setCityMessage] = useState("");
+  const [employers, setEmployerTable] = useState([]);
 
-  const useHandler2 = (e) => {
-    let item2 = e.target.value;
-    if (item2.length < 2 || item2.length > 30) {
-      setTitleErr(true);
-    } else {
-      setTitleErr(false);
-    }
-  };
-
-  const useHandler3 = (e) => {
-    let item3 = e.target.value;
-    if (item3.length < 3 || item3.length > 30) {
-      setCountryErr(true);
-    } else {
-      setCountryErr(false);
-    }
-  };
-
+    useEffect(() => {
+      if (JSON.parse(localStorage.getItem("employers"))) {
+        setEmployerTable(JSON.parse(localStorage.getItem("employers")));
+      }
+    }, []);
   const loginHandler = (e) => {
     e.preventDefault();
-    const { name, value } = e.target;
-    setFormValues({ ...formValues, [name]: value });
-    <EmploymentTable Tabeldata={formValues} />;
+
+     if (validation){
+        const data2 = { first, last, title,country,city,birthDate,image1 };
+        console.log(data2);
+        employers.push(data2);
+                localStorage.setItem("employers", JSON.stringify(employers));
+
+          const newData=[employers, data2];
+          setEmployerTable(newData);
+          navigate('/employers');
+
+    }
+  
+  };
+  
+
+  //  setFirst("");
+  //  setLast("");
+  //  setTitle("");
+  //  setCountry("");
+  //  setCity("");
+  //  setBirthDate("");
+  //  setImage1("");
+  const handleOnChange1 = (e) => {
+    setFirst(e.target.value);
+  };
+  const handleOnChange2 = (e) => {
+    setLast(e.target.value);
+  };
+
+  const handleOnChange3 = (e) => {
+    setTitle(e.target.value);
+  };
+
+  const handleOnChange4 = (e) => {
+    setCountry(e.target.value);
+  };
+  const handleOnChange5 = (e) => {
+    setCity(e.target.value);
+  };
+  const handleOnChange6 = (e) => {
+    setBirthDate(e.target.value);
+  };
+  const handleOnChange7 = (e) => {
+    setImage1(e.target.value);
+  };
+
+  const validation = () => {
+    if (
+      first === "" ||
+      last === "" ||
+      title === "" ||
+      country === "" ||
+      city === "" ||
+      birthDate === "" ||
+      image1 === ""
+    ) {
+      alert("fields cannot be empty");
+    }
+    const firstValidation = () => {
+      if (first.length < 2 || first.length > 30) {
+        setFirstMessage("InValid First Name !");
+        return false;
+      } else if (last.length < 2 || last.length > 30) {
+        setLastMessage("InValid Last Name !");
+        return false;
+      } else if (city.length < 2 || city.length > 30) {
+        setCityMessage("InValid City Name !");
+        return false;
+      } else {
+        return true;
+      }
+    };
+
+    const secondValidation = () => {
+      if (title.length < 5 || title.length > 20) {
+        setTitleMessage("inValid Title");
+        console.log("Invalid Title");
+        return false;
+      } else {
+        return true;
+      }
+    };
+    const thirdValidation = (c) => {
+      if (country.length < 3 || country.length > 30) {
+        setCountryMessage("InValid Country Name ");
+        console.log("Invalid Country Name");
+        return false;
+      } else {
+        return true;
+      }
+    };
+
+    if (firstValidation() || secondValidation() || thirdValidation()) {
+      return true;
+    }
   };
 
   return (
     <div className="contact-container">
-      <h2 style={{ color: "blue", textAlign: "center" }}>Employers' Form</h2>
+      <h2 style={{ color: "blue", textAlign: "center" }}>Employers' Table</h2>
       <form onSubmit={loginHandler}>
-        <div>
-          <label>First Name</label>
-          <input
-            type="text"
-            placeholder="First Name"
-            onChange={useHandler}
-          ></input>
-          {firstErr ? <p>Invalid Name</p> : null}
-        </div>
-        <div>
-          <label>Last Name</label>
-          <input
-            type="text"
-            placeholder=" Last Name"
-            onChange={useHandler}
-          ></input>
-          {lastErr ? <p>Invalid Family Name</p> : null}
-        </div>
-        <div>
-          <label>Title</label>
-          <input type="text" placeholder="Title" onChange={useHandler2}></input>
-          {titleErr ? <p>Invalid Title</p> : null}
-        </div>
-        <div>
-          <label>Country</label>
-          <input
-            type="text"
-            placeholder="Country"
-            onChange={useHandler3}
-          ></input>
-          {countryErr ? <p>Invalid Country</p> : null}
-        </div>
-        <div>
-          <label>City</label>
-          <input type="text" placeholder="City" onChange={useHandler}></input>
-          {cityErr ? <p>Invalid City</p> : null}
-        </div>
-        <div>
-          <label>Birhdate</label>
-          <input
-            type="date"
-            placeholder="BirthDate"
-            onChange={(e) => {
-              setBirthDate(e.target.value);
-            }}
-          ></input>
-        </div>
-        <div>
-          <label>Image</label>
-          <input
-            type="text"
-            placeholder="Enter The link of an image"
-            onChange={(e) => {
-              setImage(e.target.value);
-            }}
-          ></input>
-        </div>
-        <button onClick={() => navigate("/employers")}>ADD</button>
+        <table>
+          <tr>
+            <td>
+              <label>First Name:</label>
+            </td>
+            <td>
+              <input
+                type="text"
+                value={first}
+                placeholder="First Name"
+                onChange={handleOnChange1}
+              />
+            </td>
+          </tr>
+          <p> {firstMessage}</p>
+
+          <tr>
+            <td>
+              <label>Last Name:</label>
+            </td>
+            <td>
+              <input
+                type="text"
+                placeholder="Last Name"
+                value={last}
+                onChange={handleOnChange2}
+              />
+            </td>
+          </tr>
+          <p> {lastMessage}</p>
+
+          <tr>
+            <td>
+              <label>Title:</label>
+            </td>
+            <td>
+              <input
+                type="text"
+                placeholder="Title"
+                value={title}
+                onChange={handleOnChange3}
+              />
+            </td>
+          </tr>
+          <p> {titleMessage}</p>
+
+          <tr>
+            <td>
+              <label>Country:</label>
+            </td>
+            <td>
+              <input
+                type="text"
+                placeholder="Country"
+                value={country}
+                onChange={handleOnChange4}
+              />
+            </td>
+          </tr>
+          <p> {countryMessage}</p>
+
+          <tr>
+            <td>
+              <label>City:</label>
+            </td>
+            <td>
+              <input
+                type="text"
+                placeholder="City"
+                value={city}
+                onChange={handleOnChange5}
+              />
+            </td>
+          </tr>
+          <p> {cityMessage}</p>
+
+          <tr>
+            <td>
+              <label> BirthDate:</label>
+            </td>
+            <td>
+              <input type="date" value={birthDate} onChange={handleOnChange6} />
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <label> Image:</label>
+            </td>
+            <td>
+              <input type="url" value={image1} onChange={handleOnChange7} />
+            </td>
+          </tr>
+        </table>
+
+        <button onClick={validation}>Add</button>
       </form>
+      <button className="home" onClick={()=>navigate(-1)}>Home</button>
     </div>
   );
 }

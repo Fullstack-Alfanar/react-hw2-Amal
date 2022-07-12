@@ -1,40 +1,51 @@
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
+import "../styles/ShoesTable.scss";
 
-import React,{useEffect,useState} from 'react'
-    
-    
+function ShoesTable() {
+  const navigate = useNavigate();
+  const [shoes, setShoesTable] = useState([]);
+  useEffect(() => {
+    if (JSON.parse(localStorage.getItem("shoes"))) {
+      setShoesTable(JSON.parse(localStorage.getItem("shoes")));
+    }
+  }, []);
 
-function ShoeTable() {
-  const [newData, setNewData] = useState([])
-
-    useEffect(() => {
-        
-            
-     
-    }, [])
   return (
-   
-   <div>
-          <h1>Shoes' Table</h1>
-<table>
-      <thead>
-        <tr>
-          <td>
-            <label>Brand</label>
-          </td>
-          <td>
-            <label>size</label>
-          </td>
-          <td>
-            <label>Price</label>
-          </td>
-        </tr>
-      </thead>
-      <tbody></tbody>
-    </table>
-   </div>
-   
+    <div>
+      <div>
+        <h1>Shoes' Table</h1>
+        <table>
+          <thead>
+            <tr>
+              <td>
+                <label>Brand</label>
+              </td>
+              <td>
+                <label>size</label>
+              </td>
+              <td>
+                <label>Price</label>
+              </td>
+            </tr>
+          </thead>
+          <tbody>
+            {shoes.map((shoe) => (
+              <tr>
+                <td>{shoe.product}</td>
+                <td>{shoe.size}</td>
+                <td>{shoe.price}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <button className="formt" onClick={() => navigate(-1)}>
+        Shoes' Form
+      </button>
+    </div>
   );
 }
 
-export default ShoeTable;
+export default ShoesTable;

@@ -1,56 +1,61 @@
+import React ,{useState,useEffect} from "react";
 import "../styles/EmployersTable.scss";
-import React from "react";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell, { tableCellClasses } from "@mui/material/TableCell";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import { styled } from "@mui/material/styles";
 
-function EmploymentTable( data ) {
+const StyledTableCell = styled(TableCell)(({ theme }) => ({
+  [`&.${tableCellClasses.head}`]: {
+    backgroundColor: theme.palette.common.black,
+    color: theme.palette.common.white,
+  },
+  [`&.${tableCellClasses.body}`]: {
+    fontSize: 14,
+  },
+}));
+function EmploymentTable(  ) {
+    const [employers, setEmployerTable] = useState([]);
+
+    useEffect(() => {
+        if (localStorage.getItem("employers")) {
+            setEmployerTable(JSON.parse(localStorage.getItem("employers")));
+        }
+    }, []);
+
   return (
     <div>
-      <h1>Employers' Table</h1>
-      <table>
-        <thead>
-          <tr>
-            <td>
-              <label>First Name</label>
-            </td>
-            <td>
-              <label>Last Name</label>
-            </td>
-            <td>
-              <label>Title</label>
-            </td>
-            <td>
-              <label>Country</label>
-            </td>
-            <td>
-              <label>City</label>
-            </td>
-            <td>
-              <label>BirthDate</label>
-            </td>
-            <td>
-              <label>Image</label>
-            </td>
-          </tr>
-        </thead>
-        <tbody>
-          {/* {data.Tabledata.map(element => {
-            console.log(element)
-
-            return(
-               <tr>
-              <td>{element.first}</td>
-              <td>{element.last}</td>
-              <td>{element.title}</td>
-              <td>{element.country}</td>
-              <td>{element.city}</td>
-              <td>{element.birthDate}</td>
-              <td>{element.image}</td>
-            </tr>
-            
-            )
-           
-          })} */}
-        </tbody>
-      </table>
+      <h1>Employers' Form</h1>
+      <Table sx={{ minWidth: 700 }} aria-label="customized table">
+        <TableHead>
+          <TableRow>
+            <StyledTableCell align="center">First Name</StyledTableCell>
+            <StyledTableCell align="center">Last Name</StyledTableCell>
+            <StyledTableCell align="center">Title</StyledTableCell>
+            <StyledTableCell align="center">Country</StyledTableCell>
+            <StyledTableCell align="center">City</StyledTableCell>
+            <StyledTableCell align="center">Birthdate</StyledTableCell>
+            <StyledTableCell align="center">Image</StyledTableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {employers.map((employer) => (
+            <TableRow>
+              <TableCell align="center">{employer.first}</TableCell>
+              <TableCell align="center">{employer.last}</TableCell>
+              <TableCell align="center">{employer.title}</TableCell>
+              <TableCell align="center">{employer.country}</TableCell>
+              <TableCell align="center">{employer.city}</TableCell>
+              <TableCell align="center">{employer.birthDate}</TableCell>
+              <TableCell align="center">
+                <img src={employer.image1} style={{ height: "70px" }} />
+              </TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
     </div>
   );
 }
