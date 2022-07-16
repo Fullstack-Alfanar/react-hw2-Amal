@@ -1,13 +1,12 @@
 * {
   box-sizing: border-box;
+  padding: 0;
+  margin: 0;
 }
 
 body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   height: 100vh;
-  position: relative;
+  width: 100%;
 }
 .contact-container {
   display: grid;
@@ -15,21 +14,19 @@ body {
   background-color: white;
   padding: 0.8em 2.5em;
   border-radius: 1em;
-  position: absolute;
   top: 20px;
   left: 400px;
 
   form {
     text-align: center;
+    
 
     table {
       margin: 0.5em;
       text-align: center;
-      display: flex;
-      flex-direction: column;
+      
 
-      input,
-      select {
+      input {
         margin-top: 0.2em;
         padding: 0.6em;
         width: 400px;
@@ -37,6 +34,7 @@ body {
         background-color: rgb(252, 201, 135);
         border: none;
         border-radius: 0.7em;
+        
       }
       input:focus {
         background-color: darksalmon;
@@ -70,11 +68,18 @@ body {
     }
 
     tr {
+      background-color: white;
       display: flex;
-      justify-content: space-between;
+      justify-content: end;
+      align-items: center;
+
+      td {
+     
+        border: none;
+        color: brown;
+      }
     }
   }
-
 
   .home {
     padding: 0.5em 0;

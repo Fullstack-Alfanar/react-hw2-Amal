@@ -31,8 +31,8 @@ function ShoesTable() {
             </tr>
           </thead>
           <tbody>
-            {shoes.map((shoe) => (
-              <tr>
+            {shoes.map((shoe,i) => (
+              <tr key={i}>
                 <td>{shoe.product}</td>
                 <td>{shoe.size}</td>
                 <td>{shoe.price}</td>
@@ -41,7 +41,17 @@ function ShoesTable() {
           </tbody>
         </table>
       </div>
-      <button className="formt" onClick={() => navigate(-1)}>
+      <button
+        style={{
+          color: "white",
+          textAzlign: "center",
+          backgroundColor: "blue",
+          border: "none",
+          padding: "0.8em 0.5em",
+          cursor:"pointer",
+        }}
+        onClick={() => navigate(-1)}
+      >
         Shoes' Form
       </button>
     </div>
