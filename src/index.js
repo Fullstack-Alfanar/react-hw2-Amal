@@ -3,11 +3,10 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Shoes from './components/navbar1/Shoes';
-import Employers from './components/navbar1/Employers'
-import Home from './components/navbar1/Home';
-import EmploymentTable from './components/navbar1/EmploymentTable';
-import ShoeTable from './components/navbar1/ShoeTable';
+import Shoes from './pages/Shoes';
+import Employers from './pages/Employers'
+import EmploymentTable from './pages/EmploymentTable';
+import ShoeTable from './pages/ShoeTable';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

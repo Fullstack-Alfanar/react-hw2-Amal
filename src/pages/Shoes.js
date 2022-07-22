@@ -21,23 +21,20 @@ function Shoes() {
   const loginHandler = (e) => {
     e.preventDefault();
 
-    if (validation){
-        const data = { product, size, price };
-        console.log(data);
-        shoes.push(data);
-                localStorage.setItem("shoes", JSON.stringify(shoes));
+    if (validation) {
+      const data = { product, size, price };
+      console.log(data);
+      shoes.push(data);
+      localStorage.setItem("shoes", JSON.stringify(shoes));
 
-          const newData=[...shoes, data];
-          setShoesTable(newData);
-          navigate('/shoestable');
-
+      const newData = [...shoes, data];
+      setShoesTable(newData);
+      navigate("/shoestable");
     }
-  
   };
-// setProduct("");
-// setPrice("");
-// setSize("");
-    
+  // setProduct("");
+  // setPrice("");
+  // setSize("");
 
   const handleOnChange1 = (e) => {
     setProduct(e.target.value);
@@ -82,9 +79,10 @@ function Shoes() {
         return true;
       }
     };
-    if (productValidation() || sizeValidation() || priceValidation()) {
-      return true;
-    }
+
+    productValidation();
+    sizeValidation();
+    priceValidation();
   };
 
   return (
@@ -92,50 +90,52 @@ function Shoes() {
       <h2 style={{ color: "blue", textAlign: "center" }}>Products' Form</h2>
       <form onSubmit={loginHandler}>
         <table>
-          <tr>
-            <td>
-              <label>Product:</label>
-            </td>
-            <td>
-              <input
-                type="text"
-                placeholder="Brand"
-                value={product}
-                onChange={handleOnChange1}
-              />
-            </td>
-          </tr>
-          <p> {productMessage}</p>
+          <thead>
+            <tr>
+              <td>
+                <label>Product:</label>
+              </td>
+              <td>
+                <input
+                  type="text"
+                  placeholder="Brand"
+                  value={product}
+                  onChange={handleOnChange1}
+                />
+                <p> {productMessage}</p>
+              </td>
+            </tr>
 
-          <tr>
-            <td>
-              <label>Size:</label>
-            </td>
-            <td>
-              <input
-                type="number"
-                placeholder="35-44 EU"
-                value={size}
-                onChange={handleOnChange2}
-              />
-            </td>
-          </tr>
-          <p> {sizeMessage}</p>
+            <tr>
+              <td>
+                <label>Size:</label>
+              </td>
+              <td>
+                <input
+                  type="number"
+                  placeholder="35-44 EU"
+                  value={size}
+                  onChange={handleOnChange2}
+                />
+                <p> {sizeMessage}</p>
+              </td>
+            </tr>
 
-          <tr>
-            <td>
-              <label>Price:</label>
-            </td>
-            <td>
-              <input
-                type="number"
-                placeholder="50-300 Price$"
-                value={price}
-                onChange={handleOnChange3}
-              />
-            </td>
-          </tr>
-          <p> {priceMessage}</p>
+            <tr>
+              <td>
+                <label>Price:</label>
+              </td>
+              <td>
+                <input
+                  type="number"
+                  placeholder="50-300 Price$"
+                  value={price}
+                  onChange={handleOnChange3}
+                />
+                <p> {priceMessage}</p>
+              </td>
+            </tr>
+          </thead>
         </table>
 
         <button onClick={validation}>Check</button>

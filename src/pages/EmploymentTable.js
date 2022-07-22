@@ -6,6 +6,8 @@ import TableCell, { tableCellClasses } from "@mui/material/TableCell";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import { styled } from "@mui/material/styles";
+import { useNavigate } from "react-router-dom";
+
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -17,6 +19,8 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
   },
 }));
 function EmploymentTable(  ) {
+    const navigate = useNavigate();
+
     const [employers, setEmployerTable] = useState([]);
 
     useEffect(() => {
@@ -41,8 +45,8 @@ function EmploymentTable(  ) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {employers.map((employer) => (
-            <TableRow>
+          {employers.map((employer,i) => (
+            <TableRow key={i}>
               <TableCell align="center">{employer.first}</TableCell>
               <TableCell align="center">{employer.last}</TableCell>
               <TableCell align="center">{employer.title}</TableCell>
@@ -56,6 +60,18 @@ function EmploymentTable(  ) {
           ))}
         </TableBody>
       </Table>
+      <button
+        style={{
+          color: "white",
+          textAzlign: "center",
+          backgroundColor: "blue",
+          border: "none",
+          padding: "0.8em 0.5em",
+        }}
+        onClick={() => navigate(-1)}
+      >
+        Shoes' Form
+      </button>
     </div>
   );
 }

@@ -1,7 +1,7 @@
-import "./App.scss";
-import Navbar1 from "./components/navbar1/Navbar1";
-import Home from "./components/navbar1/Home";
-import store1 from "./components/assets/Images/store1.png"
+import "../src/styles/App.scss";
+import Navbar1 from "./navbar1/Navbar1";
+import Home from "./navbar1/Home";
+import store1 from "../src/components/assets/Images/store1.png"
 
 
 function App() {
